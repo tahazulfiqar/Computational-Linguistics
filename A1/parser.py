@@ -98,24 +98,24 @@ class PartialParse(object):
             #Right/Left Arc
             elif transition_id in arc_states:
 
-                #Checking to see if stack has enough items for dependency
+                #Checking to see if stack has enough items for dependancy
                 if len(self.stack) == 1:
                     raise ValueError('Unable to arc unless stack has 2 or more items.') 
 
                 #Left-Arc        
                 if transition_id == self.left_arc_id:
 
-                    #Unable to perform a left arc with root as dependent
+                    #Unable to perform a left arc with root as dependant
                     if self.stack[-2]==0:
-                        raise ValueError('Unable to perform left arc with root as the dependent')
+                        raise ValueError('Unable to perform left arc with root as the dependant')
 
-                    arc = (self.stack[-1], self.sentence[-2], deprel)
+                    arc = (self.stack[-1], self.stack[-2], deprel)
                     self.arcs.append(arc)
                     self.stack.pop(-2)
 
                 #Right-Arc
                 else:
-                    arc = (self.stack[-2], self.sentence[-1], deprel)
+                    arc = (self.stack[-2], self.stack[-1], deprel)
                     self.arcs.append(arc)
                     self.stack.pop()
 
@@ -143,6 +143,19 @@ class PartialParse(object):
                 1, etc.
         """
         # *** BEGIN YOUR CODE ***
+
+        deps = []
+        counter = 0
+
+        for arc in self.arcs:
+            if arc[0] == sentence_idx:
+                deps.append(arc[1]) 
+                counter += 1
+
+        if n is not None:
+            if counter > n:
+                deps = deps[0:n]
+
         # *** END YOUR CODE ***
         return deps
 
