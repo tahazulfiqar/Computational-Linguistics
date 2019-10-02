@@ -179,6 +179,18 @@ class PartialParse(object):
                 1, etc.
         """
         # *** BEGIN YOUR CODE ***
+        deps = []
+        counter = 0
+
+        for arc in reversed(self.arcs):
+            if arc[0] == sentence_idx:
+                deps.append(arc[1]) 
+                counter += 1
+
+        if n is not None:
+            if counter > n:
+                deps = deps[0:n]
+
         # *** END YOUR CODE ***
         return deps
 
