@@ -57,6 +57,7 @@ class PartialParse(object):
         Assume that the PartialParse is valid
         """
         # *** BEGIN YOUR CODE ***
+        return len(self.stack)==1 and self.next==len(self.sentence)
         # *** END YOUR CODE ***
 
     def parse_step(self, transition_id, deprel=None):
@@ -78,6 +79,48 @@ class PartialParse(object):
                 given the current state
         """
         # *** BEGIN YOUR CODE ***
+        valid_states = [self.left_arc_id, self.right_arc_id, self.shift_id]
+        arc_states = valid_states[0:2]
+
+        if transition_id in valid_states:
+
+            #Shift
+            if transition_id == self.shift_id:
+
+                #Trying to shift when at end of the buffer
+                if self.next >= len(self.sentence):
+                    raise ValueError('Trying to shift from empty buffer')
+                
+                else:
+                    self.stack.append(self.next)
+                    self.next += 1
+
+            #Right/Left Arc
+            elif transition_id in arc_states:
+
+                #Checking to see if stack has enough items for dependency
+                if len(self.stack) == 1:
+                    raise ValueError('Unable to arc unless stack has 2 or more items.') 
+
+                #Left-Arc        
+                if transition_id == self.left_arc_id:
+
+                    #Unable to perform a left arc with root as dependent
+                    if self.stack[-2]==0:
+                        raise ValueError('Unable to perform left arc with root as the dependent')
+
+                    arc = (self.stack[-1], self.sentence[-2], deprel)
+                    self.arcs.append(arc)
+                    self.stack.pop(-2)
+
+                #Right-Arc
+                else:
+                    arc = (self.stack[-2], self.sentence[-1], deprel)
+                    self.arcs.append(arc)
+                    self.stack.pop()
+
+        else:
+            raise ValueError('Not a proper transition')  
         # *** END YOUR CODE ***
 
     def get_n_leftmost_deps(self, sentence_idx, n=None):
