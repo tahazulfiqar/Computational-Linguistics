@@ -102,6 +102,10 @@ class PartialParse(object):
                 if len(self.stack) == 1:
                     raise ValueError('Unable to arc unless stack has 2 or more items.') 
 
+                #Each arc needs a deprel
+                if deprel is None:
+                    raise ValueError('Left or Right arc requires a dependancy relation level.')
+
                 #Left-Arc        
                 if transition_id == self.left_arc_id:
 
@@ -335,7 +339,7 @@ def minibatch_parse(sentences, model, batch_size):
             #Remove partial_parse with invalid action        
             except(ValueError):
                 unfinished_parses.remove(partial_parse)
-                
+
             i += 1
 
     # *** END YOUR CODE ***
