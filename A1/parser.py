@@ -299,6 +299,36 @@ def minibatch_parse(sentences, model, batch_size):
             arcs[i] should contain the arcs for sentences[i]).
     """
     # *** BEGIN YOUR CODE ***
+
+    #Initialize partial_parses
+    partial_parses = []
+    for sentence in sentences:
+        partial_parses.append(PartialParse(sentence))
+    
+    #Create unfinished_parses by doing a shallow copy of partial_parses
+    unfinished_parses = list(partial_parses)
+    
+    arcs = []
+
+    while unfinished_parses:
+                
+        #Create a mini batch the size of batch_size
+        mini_batch = unfinished_parses[0:batch_size]
+        #Model used to predict transitions
+        td_pairs = model.predict(mini_batch)
+
+        for i in range(len(mini_batch)):
+            partial_parse = mini_batch[i]
+            try:
+                partial_parse.parse_step(td_pairs[i][0], td_pairs[i][1])
+                if partial_parse.complete:
+                    arcs.append(partial_parse.arcs)
+                    unfinished_parses.remove(partial_parse)
+                    
+            except(ValueError):
+                unfinished_parses.remove(partial_parse)
+
+
     # *** END YOUR CODE ***
     return arcs
 
@@ -554,4 +584,4 @@ if __name__ == '__main__':
     test_parse()
     test_leftmost_rightmost()
     test_minibatch_parse()
-    test_oracle()
+    #test_oracle()
