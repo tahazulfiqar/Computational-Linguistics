@@ -259,37 +259,29 @@ class PartialParse(object):
         #all left dependants of most recent node
         left_dep_rec = list(get_left_deps(recent_node))
         
-        #all right dependants of most recent node
-        right_dep_rec = list(get_right_deps(recent_node))
-
-        print(right_dep_rec)
-
-
-        #get head of the most recent node
-        head_rec = recent_node['head']
-
-        #print(recent_node['deps'])
+        #Look through left dependants, if it is on the stack, we want to choose the max one 
+        max_left = -1 * float('inf')
+        for dep in left_dep_rec:
+            if dep in self.stack:
+                if dep > max_left:
+                    max_left = dep
         
-        #Only 1 item in stack means the root is in it, which requires a shift as long as non-complete: 
-        if len(self.stack) == 1:
-            transition_id = 2
+        #reference to the 2nd most recent item added to the stack
+        recent_node2 = graph.nodes[self.stack[-2]]
+        
+        #all right dependants of 2nd most recent node
+        right_dep_rec2 = list(get_right_deps(recent_node2))
+        
+        #Look through right dependants, if it is on the stack, we want to choose the min one 
+        min_right = float("inf")
+        for dep in right_dep_rec2:
+            if dep in self.stack:
+                if dep < min_right:
+                    min_right = dep
 
-        else:
-
-            #2nd most recent node added into stack
-            recent_node2 = graph.nodes[self.stack[-2]]
-            
-            #all left dependants of most recent node
-            left_dep_rec2 = list(get_left_deps(recent_node2))
-            
-            #all right dependants of most recent node
-            right_dep_rec2 = list(get_right_deps(recent_node2))
-
-            #get head of the 2nd most recent node
-            head_rec2 = recent_node2['head']
-
-            #Check if the most recent is a direct left dependant
-            #if head_rec2 in 
+        
+        #print(recent_node['deps'])
+                
 
         # *** END YOUR CODE ***
         return transition_id, deprel
