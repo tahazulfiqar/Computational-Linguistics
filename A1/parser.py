@@ -253,8 +253,44 @@ class PartialParse(object):
         transition_id, deprel = -1, None
         # *** BEGIN YOUR CODE ***
 
+        #reference to the most recent item added to the stack
+        recent_node = graph.nodes[self.stack[-1]]
+        
+        #all left dependants of most recent node
+        left_dep_rec = list(get_left_deps(recent_node))
+        
+        #all right dependants of most recent node
+        right_dep_rec = list(get_right_deps(recent_node))
 
-    
+        print(right_dep_rec)
+
+
+        #get head of the most recent node
+        head_rec = recent_node['head']
+
+        #print(recent_node['deps'])
+        
+        #Only 1 item in stack means the root is in it, which requires a shift as long as non-complete: 
+        if len(self.stack) == 1:
+            transition_id = 2
+
+        else:
+
+            #2nd most recent node added into stack
+            recent_node2 = graph.nodes[self.stack[-2]]
+            
+            #all left dependants of most recent node
+            left_dep_rec2 = list(get_left_deps(recent_node2))
+            
+            #all right dependants of most recent node
+            right_dep_rec2 = list(get_right_deps(recent_node2))
+
+            #get head of the 2nd most recent node
+            head_rec2 = recent_node2['head']
+
+            #Check if the most recent is a direct left dependant
+            #if head_rec2 in 
+
         # *** END YOUR CODE ***
         return transition_id, deprel
 
