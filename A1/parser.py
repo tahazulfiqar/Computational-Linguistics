@@ -317,17 +317,26 @@ def minibatch_parse(sentences, model, batch_size):
         #Model used to predict transitions
         td_pairs = model.predict(mini_batch)
 
-        for i in range(len(mini_batch)):
-            partial_parse = mini_batch[i]
+        i = 0
+        for partial_parse in mini_batch:
+
+            predicted_tid = td_pairs[i][0]
+            predicted_deptrel = td_pairs[i][1]
+
+            #Performing parse step on each partial parse from mini_batch
             try:
-                partial_parse.parse_step(td_pairs[i][0], td_pairs[i][1])
+                partial_parse.parse_step(predicted_tid, predicted_deptrel)
+
+                #if partial parse is complete, remove it from the unfinished_parses, add it to arcs
                 if partial_parse.complete:
                     arcs.append(partial_parse.arcs)
                     unfinished_parses.remove(partial_parse)
-                    
+
+            #Remove partial_parse with invalid action        
             except(ValueError):
                 unfinished_parses.remove(partial_parse)
-
+                
+            i += 1
 
     # *** END YOUR CODE ***
     return arcs
@@ -584,4 +593,4 @@ if __name__ == '__main__':
     test_parse()
     test_leftmost_rightmost()
     test_minibatch_parse()
-    #test_oracle()
+    test_oracle()
