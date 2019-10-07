@@ -252,6 +252,9 @@ class PartialParse(object):
             raise ValueError('PartialParse already completed')
         transition_id, deprel = -1, None
         # *** BEGIN YOUR CODE ***
+
+
+    
         # *** END YOUR CODE ***
         return transition_id, deprel
 
@@ -312,8 +315,6 @@ def minibatch_parse(sentences, model, batch_size):
     #Create unfinished_parses by doing a shallow copy of partial_parses
     unfinished_parses = list(partial_parses)
     
-    arcs = []
-
     while unfinished_parses:
                 
         #Create a mini batch the size of batch_size
@@ -331,16 +332,20 @@ def minibatch_parse(sentences, model, batch_size):
             try:
                 partial_parse.parse_step(predicted_tid, predicted_deptrel)
 
-                #if partial parse is complete, remove it from the unfinished_parses, add it to arcs
+                #if partial parse is complete, remove it from the unfinished_parse
                 if partial_parse.complete:
-                    arcs.append(partial_parse.arcs)
                     unfinished_parses.remove(partial_parse)
 
-            #Remove partial_parse with invalid action        
+            #Remove partial_parse with invalid action      
             except(ValueError):
                 unfinished_parses.remove(partial_parse)
 
             i += 1
+
+    #Returning arcs for each parse
+    arcs = []
+    for parse in partial_parses:
+        arcs.append(parse.arcs)
 
     # *** END YOUR CODE ***
     return arcs
