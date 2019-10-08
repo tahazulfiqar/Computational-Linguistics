@@ -253,43 +253,69 @@ class PartialParse(object):
         transition_id, deprel = -1, None
         # *** BEGIN YOUR CODE ***
 
-        #reference to the most recent item added to the stack
-        recent_node = graph.nodes[self.stack[-1]]
+        #Reference to the newest stack node and its head
+        rec_node = graph.nodes[self.stack[-1]]
+        rec_head = rec_node['head']
+
+        #Get left dependants of the most recent node        
+        left_dep_rec = list(get_left_deps(rec_node))
+        left_dep_rec.reverse()
+
+        #if it in the stack, get index of potential left arc dependant 
+        left_idx = 0
+
+        for dep in left_dep_rec:
+            if dep in self.stack:
+                left_idx = dep
+                break
+                
+        #Get right dependants of the most recent node
+        right_dep_rec = list(get_right_deps(rec_node))
         
-        #all left dependants of most recent node
-        left_dep_rec = list(get_left_deps(recent_node))
-        
-        #all right dependants of most recent node
-        right_dep_rec = list(get_right_deps(recent_node))
+        #right arc checker of most recent node in stack
+        right_idx = 0
 
-        print(right_dep_rec)
+        for dep in right_dep_rec:
+            if dep >= self.next:
+                right_idx = dep
+                break
 
-
-        #get head of the most recent node
-        head_rec = recent_node['head']
-
-        #print(recent_node['deps'])
-        
-        #Only 1 item in stack means the root is in it, which requires a shift as long as non-complete: 
+        #if only 1 item in the stack, it contains the root -> shift is required
         if len(self.stack) == 1:
-            transition_id = 2
+            transition_id = self.shift_id
 
         else:
 
-            #2nd most recent node added into stack
-            recent_node2 = graph.nodes[self.stack[-2]]
-            
-            #all left dependants of most recent node
-            left_dep_rec2 = list(get_left_deps(recent_node2))
-            
-            #all right dependants of most recent node
-            right_dep_rec2 = list(get_right_deps(recent_node2))
+            #left arc
+            if left_idx:
+                transition_id = self.left_arc_id
+                deps = rec_node['deps']
 
-            #get head of the 2nd most recent node
-            head_rec2 = recent_node2['head']
+                for dep in deps:
+                    if self.stack[-2] in deps[dep]:
+                        deprel = dep
+                        break
 
-            #Check if the most recent is a direct left dependant
-            #if head_rec2 in 
+            #potential right arc
+            elif not right_idx:
+
+                #if head is the 2nd most recent item in stack, we will perform a right-arc
+                if rec_head == self.stack[-2]:
+                    transition_id = self.right_arc_id
+                    head_deps = graph.nodes[rec_head]['deps']
+                    
+                    for dep in head_deps:
+                        if self.stack[-1] in head_deps[dep]:
+                            deprel = dep
+                            break
+                
+                #otherwise, we perform a shift
+                else:
+                    transition_id = self.shift_id
+
+            #if either of those criteria aren't met, we perform a shift
+            else:
+                transition_id = self.shift_id
 
         # *** END YOUR CODE ***
         return transition_id, deprel
