@@ -287,6 +287,8 @@ class ParserModel(nn.Module):
             loss: A 0d tensor (scalar)
         """
         # *** BEGIN YOUR CODE ***
+        input = torch.matmul(class_batch, prediction_batch)
+        loss = F.cross_entropy(input)
         # *** END YOUR CODE ***
         return loss
 
@@ -466,7 +468,7 @@ def main(debug):
 
 if __name__ == '__main__':
     #main(False)
-    #main(True)
+    main(True)
     '''b = torch.rand((2, 4, 6))
     print(b)
     print(b.size())
@@ -490,7 +492,7 @@ if __name__ == '__main__':
     print(z.size())
 
     print(a)
-    print(a.size())'''
+    print(a.size())
 
     N = 15
     h_size = 4
@@ -515,3 +517,12 @@ if __name__ == '__main__':
     z2 = F.dropout(z1, 0.5)
 
     print(z2)
+    N = 15
+    a = torch.randn(N,)
+    b = torch.randn(N, 3)
+
+    c = torch.matmul(a, b)
+
+    print(a)
+    print(b) 
+    print(c)'''
