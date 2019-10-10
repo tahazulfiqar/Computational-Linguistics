@@ -25,9 +25,9 @@ def he_initializer(shape, **kwargs):
     Hint: You might find torch.normal() useful.
     """
     # *** BEGIN YOUR CODE ***
-    a = torch.randn(shape)
-    sigma = torch.sqrt(2 / a)
-    out = torch.normal(0, sigma)
+    sigma = (2 / shape[0])**0.5
+    mu = 0
+    out = torch.normal(mu, sigma, shape, requires_grad=True)
     # *** END YOUR CODE ***
     return out
 
@@ -48,3 +48,4 @@ def test_initialization_basic():
 
 if __name__ == "__main__":
     test_initialization_basic()
+ 

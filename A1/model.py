@@ -73,6 +73,11 @@ class ParserModel(nn.Module):
                 matrix of pre-trained word embeddings
         """
         # *** BEGIN YOUR CODE ***
+        self.word_embeddings = torch.tensor(word_embeddings, requires_grad=True)
+
+        #requires_grad was set from the he_initializer function
+        self.tag_embeddings = he_initializer((self.config.n_tag_ids, self.config.embed_size))
+        self.deprel_embeddings = he_initializer((self.config.n_deprel_ids, self.config.embed_size))
         # *** END YOUR CODE ***
 
     def create_weights_biases(self):
@@ -109,6 +114,20 @@ class ParserModel(nn.Module):
            and bias tensors (see the PyTorch tutorials for more details).
         """
         # *** BEGIN YOUR CODE ***
+        N = self.config.n_word_features + self.config.n_word_features + self.config.n_deprel_features
+
+        #W_h
+        self.W_h = he_initializer((N * self.config.embed_size, self.config.hidden_size))
+
+        #b_h
+        self.b_h = torch.zeros(self.config.hidden_size, requires_grad=True)
+
+        #W_o
+        self.W_o = he_initializer((self.config.hidden_size, self.config.n_classes))
+
+        #b_o
+        self.b_o = torch.zeros((self.config.n_classes), requires_grad=True)
+
         # *** END YOUR CODE ***
 
     def embedding_lookup(self, id_batch, n_ids, embedding_matrix):
@@ -145,6 +164,20 @@ class ParserModel(nn.Module):
            more hints.
         """
         # *** BEGIN YOUR CODE ***
+
+        #One Hot of dimension of size B x N x n_ids
+        oh_id = one_hot_float(id_batch, n_ids)
+
+        #embedded tensor of size B x N x embed_size
+        embedded_batch = torch.mm(oh_id, embedding_matrix)
+
+        #Extract required dimensions
+        N = id_batch.size()[1]
+        embed_size = embedding_matrix.size()[1]
+
+        #reshaped to size B x N*embed_size
+        embedded_batch = embedded_batch.reshape((-1, N*embed_size))
+
         # *** END YOUR CODE ***
         return embedded_batch
 
@@ -175,6 +208,11 @@ class ParserModel(nn.Module):
            using torch.cat and return the result.
         """
         # *** BEGIN YOUR CODE ***
+        w_id = self.embedding_lookup(word_id_batch, self.config.n_word_ids, self.word_embeddings)
+        t_id = self.embedding_lookup(tag_id_batch, self.config.n_tag_ids, self.tag_embeddings)
+        d_id = self.embedding_lookup(deprel_id_batch, self.config.n_deprel_ids, self.deprel_embeddings)
+
+        x = torch.cat((w_id, t_id, d_id), 1)
         # *** END YOUR CODE ***
         return x
 
@@ -220,6 +258,13 @@ class ParserModel(nn.Module):
                                        torch.tensor(deprel_id_batch))
 
         # *** BEGIN YOUR CODE ***
+        
+        relu_input = torch.mm(x, self.W_h) + self.b_h
+        h = F.relu(relu_input)
+
+        h_drop = F.dropout(h, self.config.dropout, training=False)
+
+        pred = torch.mm(h_drop, self.W_o) + self.b_o
         # *** END YOUR CODE ***
         return pred
 
@@ -420,4 +465,53 @@ def main(debug):
 
 
 if __name__ == '__main__':
-    main(False)
+    #main(False)
+    #main(True)
+    '''b = torch.rand((2, 4, 6))
+    print(b)
+    print(b.size())
+
+    b = b.reshape(4*6, -1)
+    print(b)
+    print(b.size())
+
+    x = torch.randn(2,3)
+    y = torch.randn(2, 5)
+    z = torch.randn(2, 4)
+    a = torch.cat((x, y, z), 1)
+
+    print(x)
+    print(x.size())
+
+    print(y)
+    print(y.size())
+
+    print(z)
+    print(z.size())
+
+    print(a)
+    print(a.size())'''
+
+    N = 15
+    h_size = 4
+    B = 30
+
+    W = torch.randn(N,h_size)
+    x = torch.randn(B, N)
+
+    bh = torch.randn(h_size)
+    print(bh)
+    print ('-----')
+
+    x1 = torch.mm(x, W) + bh
+    print(x1)
+    print('------')
+ 
+    z1 = F.relu(x1)
+
+    print(z1)
+    print('-------')
+
+    z2 = F.dropout(z1, 0.5)
+
+    print(z2)
