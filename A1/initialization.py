@@ -25,7 +25,7 @@ def he_initializer(shape, **kwargs):
     Hint: You might find torch.normal() useful.
     """
     # *** BEGIN YOUR CODE ***
-    a = torch.rand(shape)
+    a = torch.randn(shape)
     sigma = torch.sqrt(2 / a)
     out = torch.normal(0, sigma)
     # *** END YOUR CODE ***

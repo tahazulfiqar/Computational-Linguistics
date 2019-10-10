@@ -95,7 +95,7 @@ class PartialParse(object):
                     self.stack.append(self.next)
                     self.next += 1
 
-            #Right/Left Arc
+            #Left\Right Arc
             elif transition_id in arc_states:
 
                 #Checking to see if stack has enough items for dependancy
@@ -123,6 +123,7 @@ class PartialParse(object):
                     self.arcs.append(arc)
                     self.stack.pop()
 
+        #Transition other than the left arc, right arc, shift
         else:
             raise ValueError('Not a proper transition')  
         # *** END YOUR CODE ***
@@ -261,23 +262,23 @@ class PartialParse(object):
         left_dep_rec = list(get_left_deps(rec_node))
         left_dep_rec.reverse()
 
-        #if it in the stack, get index of potential left arc dependant 
-        left_idx = 0
+        #if it in the stack, get the potential left arc dependant 
+        p_left = 0
 
         for dep in left_dep_rec:
             if dep in self.stack:
-                left_idx = dep
+                p_left = dep
                 break
                 
         #Get right dependants of the most recent node
         right_dep_rec = list(get_right_deps(rec_node))
         
-        #right arc checker of most recent node in stack
-        right_idx = 0
+        #check to see if right arc is to be added
+        p_right = 0
 
         for dep in right_dep_rec:
             if dep >= self.next:
-                right_idx = dep
+                p_right = dep
                 break
 
         #if only 1 item in the stack, it contains the root -> shift is required
@@ -287,23 +288,25 @@ class PartialParse(object):
         else:
 
             #left arc
-            if left_idx:
+            if p_left:
                 transition_id = self.left_arc_id
                 deps = rec_node['deps']
 
+                #loop through to get the relation
                 for dep in deps:
                     if self.stack[-2] in deps[dep]:
                         deprel = dep
                         break
 
             #potential right arc
-            elif not right_idx:
+            elif not p_right:
 
                 #if head is the 2nd most recent item in stack, we will perform a right-arc
                 if rec_head == self.stack[-2]:
                     transition_id = self.right_arc_id
                     head_deps = graph.nodes[rec_head]['deps']
                     
+                    #loop through to get the relation
                     for dep in head_deps:
                         if self.stack[-1] in head_deps[dep]:
                             deprel = dep
@@ -374,13 +377,14 @@ def minibatch_parse(sentences, model, batch_size):
     for sentence in sentences:
         partial_parses.append(PartialParse(sentence))
     
-    #Create unfinished_parses by doing a shallow copy of partial_parses
+    #Create unfinished_parses by performing a shallow copy of partial_parses
     unfinished_parses = list(partial_parses)
     
     while unfinished_parses:
                 
         #Create a mini batch the size of batch_size
         mini_batch = unfinished_parses[0:batch_size]
+        
         #Model used to predict transitions
         td_pairs = model.predict(mini_batch)
 
