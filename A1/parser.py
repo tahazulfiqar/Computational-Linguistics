@@ -258,40 +258,54 @@ class PartialParse(object):
         if len(self.stack) == 1:
             transition_id = self.shift_id
 
-        else:  
-            #Reference to the newest stack node and its head
-            rec_node = graph.nodes[self.stack[-1]]
-            rec_head = rec_node['head']
+        else:
 
-            #Get left dependants of the most recent node
-            left_dep_rec = list(get_left_deps(rec_node))
-            left_dep_rec.reverse()
+            a = self.stack[-2]
 
-            #if it in the stack, get the potential left arc dependant
-            p_left = 0
+            #Case for when the root is the stack[-2] item
+            if not a:
+                
+                #when the buffer is not empty, we shift
+                if self.next != len(self.sentence):
+                    transition_id = self.shift_id
 
-            for dep in left_dep_rec:
-                if dep in self.stack:
-                    p_left = dep
-                    break
+                #this is our last step of the mechanism - right arc from root to dependant
+                else:
+                    transition_id = self.right_arc_id
+                    root_dep = graph.nodes[0]['deps']
+                    for dep in root_dep:
+                        deprel = dep
 
-            #Get right dependants of the most recent node
-            right_dep_rec = list(get_right_deps(rec_node))
+            else:            
 
-            #check to see if right arc is to be added
-            p_right = 0
+                #Reference to the newest stack node and its head
+                rec_node = graph.nodes[self.stack[-1]]
+                rec_head = rec_node['head']
 
-            for dep in right_dep_rec:
-                if dep >= self.next:
-                    p_right = dep
-                    break
+                #Get left dependants of the most recent node
+                left_dep_rec = list(get_left_deps(rec_node))
+                left_dep_rec.reverse()
 
-            #if only 1 item in the stack, it contains the root -> shift is required
-            if len(self.stack) == 1:
-                transition_id = self.shift_id
+                #if it in the stack, get the potential left arc dependant
+                p_left = 0
 
-            else:
-            #left arc
+                for dep in left_dep_rec:
+                    if dep in self.stack:
+                        p_left = dep
+                        break
+
+                #Get right dependants of the most recent node
+                right_dep_rec = list(get_right_deps(rec_node))
+
+                #check to see if right arc is to be added
+                p_right = 0
+
+                for dep in right_dep_rec:
+                    if dep >= self.next:
+                        p_right = dep
+                        break
+                
+                #left arc
                 if p_left:
                     transition_id = self.left_arc_id
                     deps = rec_node['deps']
@@ -323,7 +337,7 @@ class PartialParse(object):
                 #if either of those criteria aren't met, we perform a shift
                 else:
                     transition_id = self.shift_id
-                 
+                    
         # *** END YOUR CODE ***
         return transition_id, deprel
 
