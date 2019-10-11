@@ -253,39 +253,39 @@ class PartialParse(object):
             raise ValueError('PartialParse already completed')
         transition_id, deprel = -1, None
         # *** BEGIN YOUR CODE ***
-
-        #Reference to the newest stack node and its head
-        rec_node = graph.nodes[self.stack[-1]]
-        rec_head = rec_node['head']
-
-        #Get left dependants of the most recent node        
-        left_dep_rec = list(get_left_deps(rec_node))
-        left_dep_rec.reverse()
-
-        #if it in the stack, get the potential left arc dependant 
-        p_left = 0
-
-        for dep in left_dep_rec:
-            if dep in self.stack:
-                p_left = dep
-                break
-                
-        #Get right dependants of the most recent node
-        right_dep_rec = list(get_right_deps(rec_node))
-        
-        #check to see if right arc is to be added
-        p_right = 0
-
-        for dep in right_dep_rec:
-            if dep >= self.next:
-                p_right = dep
-                break
-
+ 
         #if only 1 item in the stack, it contains the root -> shift is required
         if len(self.stack) == 1:
             transition_id = self.shift_id
 
         else:
+
+            #Reference to the newest stack node and its head
+            rec_node = graph.nodes[self.stack[-1]]
+            rec_head = rec_node['head']
+
+            #Get left dependants of the most recent node        
+            left_dep_rec = list(get_left_deps(rec_node))
+            left_dep_rec.reverse()
+
+            #if it in the stack[-2], get the left arc dependant 
+            p_left = 0
+
+            for dep in left_dep_rec:
+                if dep == self.stack[-2]:
+                    p_left = dep
+                    break
+                    
+            #Get right dependants of the most recent node
+            right_dep_rec = list(get_right_deps(rec_node))
+            
+            #check to see if right arc has the potential to be added
+            p_right = 0
+
+            for dep in right_dep_rec:
+                if dep >= self.next:
+                    p_right = dep
+                    break
 
             #left arc
             if p_left:
@@ -298,7 +298,7 @@ class PartialParse(object):
                         deprel = dep
                         break
 
-            #potential right arc
+            #if we see an upcoming right arc for stack[-1], it must perform a shift or stack[-2] perform right arc to stack[-1].  
             elif not p_right:
 
                 #if head is the 2nd most recent item in stack, we will perform a right-arc
