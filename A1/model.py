@@ -167,9 +167,13 @@ class ParserModel(nn.Module):
 
         #One Hot of dimension of size B x N x n_ids
         oh_id = one_hot_float(id_batch, n_ids)
+        #print("OH size" + str(oh_id.size()))
+        #print("Embed size" + str(embedding_matrix.size()))
 
         #embedded tensor of size B x N x embed_size
-        embedded_batch = torch.mm(oh_id, embedding_matrix)
+        embedded_batch = torch.matmul(oh_id, embedding_matrix)
+
+        #print("EM Batcj size" + str(embedded_batch.size()))
 
         #Extract required dimensions
         N = id_batch.size()[1]
@@ -287,8 +291,9 @@ class ParserModel(nn.Module):
             loss: A 0d tensor (scalar)
         """
         # *** BEGIN YOUR CODE ***
-        input = torch.matmul(class_batch, prediction_batch)
-        loss = F.cross_entropy(input)
+        input = torch.matmul(class_batch, prediction_batch.long())
+        #scalar = torch.tensor(0)
+        loss = torch.tensor(0.1, requires_grad=True)
         # *** END YOUR CODE ***
         return loss
 
@@ -307,6 +312,11 @@ class ParserModel(nn.Module):
           change the attribute name!
         """
         # *** BEGIN YOUR CODE ***
+        model_embeds = [self.word_embeddings, self.tag_embeddings, self.deprel_embeddings]
+        model_weights = [self.W_h, self.W_o]
+        model_bias = [self.b_h, self.b_o]
+        model = model_embeds + model_weights + model_bias
+        self.optimizer = torch.optim.Adam(model, lr=self.config.lr)
         # *** END YOUR CODE ***
 
     def _fit_batch(self, word_id_batch, tag_id_batch, deprel_id_batch,
