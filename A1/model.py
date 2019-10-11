@@ -291,9 +291,14 @@ class ParserModel(nn.Module):
             loss: A 0d tensor (scalar)
         """
         # *** BEGIN YOUR CODE ***
-        input = torch.matmul(class_batch, prediction_batch.long())
+        '''
+            input = torch.randn((3, 2), requires_grad=True)
+    target = torch.rand((3, 2), requires_grad=False)
+    loss = F.binary_cross_entropy(F.sigmoid(input), target)
+    print(loss.size())
+        '''
         #scalar = torch.tensor(0)
-        loss = torch.tensor(0.1, requires_grad=True)
+        loss = F.cross_entropy(prediction_batch, class_batch)
         # *** END YOUR CODE ***
         return loss
 
@@ -535,4 +540,9 @@ if __name__ == '__main__':
 
     print(a)
     print(b) 
-    print(c)'''
+    print(c)
+
+    input = torch.randn((3, 2), requires_grad=True)
+    target = torch.rand((3, 2), requires_grad=False)
+    loss = F.binary_cross_entropy(F.sigmoid(input), target)
+    print(loss.size())'''
