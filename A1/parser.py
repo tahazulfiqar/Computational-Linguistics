@@ -260,65 +260,80 @@ class PartialParse(object):
 
         else:
 
-            #Reference to the newest stack node and its head
-            rec_node = graph.nodes[self.stack[-1]]
-            rec_head = rec_node['head']
+            a = self.stack[-2]
 
-            #Get left dependants of the most recent node        
-            left_dep_rec = list(get_left_deps(rec_node))
-            left_dep_rec.reverse()
-
-            #if it in the stack[-2], get the left arc dependant 
-            p_left = 0
-
-            for dep in left_dep_rec:
-                if dep == self.stack[-2]:
-                    p_left = dep
-                    break
-                    
-            #Get right dependants of the most recent node
-            right_dep_rec = list(get_right_deps(rec_node))
-            
-            #check to see if right arc has the potential to be added
-            p_right = 0
-
-            for dep in right_dep_rec:
-                if dep >= self.next:
-                    p_right = dep
-                    break
-
-            #left arc
-            if p_left:
-                transition_id = self.left_arc_id
-                deps = rec_node['deps']
-
-                #loop through to get the relation
-                for dep in deps:
-                    if self.stack[-2] in deps[dep]:
-                        deprel = dep
-                        break
-
-            #if we see an upcoming right arc for stack[-1], it must perform a shift or stack[-2] perform right arc to stack[-1].  
-            elif not p_right:
-
-                #if head is the 2nd most recent item in stack, we will perform a right-arc
-                if rec_head == self.stack[-2]:
-                    transition_id = self.right_arc_id
-                    head_deps = graph.nodes[rec_head]['deps']
-                    
-                    #loop through to get the relation
-                    for dep in head_deps:
-                        if self.stack[-1] in head_deps[dep]:
-                            deprel = dep
-                            break
+            if not a:
                 
-                #otherwise, we perform a shift
-                else:
+                if self.next != len(self.sentence):
                     transition_id = self.shift_id
 
-            #if either of those criteria aren't met, we perform a shift
+                else:
+                    transition_id = self.right_arc_id
+                    root_dep = graph.nodes[0]['deps']
+                    for dep in root_dep:
+                        deprel = dep
+
             else:
-                transition_id = self.shift_id
+
+                #Reference to the newest stack node and its head
+                rec_node = graph.nodes[self.stack[-1]]
+                rec_head = rec_node['head']
+
+                #Get left dependants of the most recent node        
+                left_dep_rec = list(get_left_deps(rec_node))
+                left_dep_rec.reverse()
+
+                #if it in the stack[-2], get the left arc dependant 
+                p_left = 0
+
+                for dep in left_dep_rec:
+                    if dep == self.stack[-2]:
+                        p_left = dep
+                        break
+                        
+                #Get right dependants of the most recent node
+                right_dep_rec = list(get_right_deps(rec_node))
+                
+                #check to see if right arc has the potential to be added
+                p_right = 0
+
+                for dep in right_dep_rec:
+                    if dep >= self.next:
+                        p_right = dep
+                        break
+
+                #left arc
+                if p_left:
+                    transition_id = self.left_arc_id
+                    deps = rec_node['deps']
+
+                    #loop through to get the relation
+                    for dep in deps:
+                        if self.stack[-2] in deps[dep]:
+                            deprel = dep
+                            break
+
+                #if we see an upcoming right arc for stack[-1], it must perform a shift or stack[-2] perform right arc to stack[-1].  
+                elif not p_right:
+
+                    #if head is the 2nd most recent item in stack, we will perform a right-arc
+                    if rec_head == self.stack[-2]:
+                        transition_id = self.right_arc_id
+                        head_deps = graph.nodes[rec_head]['deps']
+                        
+                        #loop through to get the relation
+                        for dep in head_deps:
+                            if self.stack[-1] in head_deps[dep]:
+                                deprel = dep
+                                break
+                    
+                    #otherwise, we perform a shift
+                    else:
+                        transition_id = self.shift_id
+
+                #if either of those criteria aren't met, we perform a shift
+                elif len(self.sentence) != self.next:
+                    transition_id = self.shift_id                    
 
         # *** END YOUR CODE ***
         return transition_id, deprel
