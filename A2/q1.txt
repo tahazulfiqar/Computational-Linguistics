@@ -1,0 +1,24 @@
+S -> NP VP
+S -> Who VP
+S -> Who Aux VP
+S -> What Aux NP V
+S -> What Aux NP V PP
+S -> What Aux NP V Adv PP
+S -> Where Aux NP VP
+NP -> N
+NP -> Det N
+NP -> Adj N
+PP -> P NP
+VP -> V Adv
+VP -> V NP Adv
+VP -> V NP Adv PP
+Det -> 'the' | 'their' | 'your'
+Adj -> 'old' | 'red' | 'happy'
+Adv -> 'quickly' | 'slowly'
+N -> 'dogs' | 'parks' | 'statues' | 'people'
+V -> 'race' | 'walk' | 'eat'
+P -> 'in' | 'to' | 'on' | 'under' | 'with'
+Who -> 'who'
+What -> 'what'
+Where -> 'where'
+Aux -> 'should' | 'will'
