@@ -1,0 +1,36 @@
+Help on package nltk.app in nltk:
+
+NNAAMMEE
+    nltk.app - Interactive NLTK Applications:
+
+DDEESSCCRRIIPPTTIIOONN
+    chartparser:  Chart Parser
+    chunkparser:  Regular-Expression Chunk Parser
+    collocations: Find collocations in text
+    concordance:  Part-of-speech concordancer
+    nemo:         Finding (and Replacing) Nemo regular expression tool
+    rdparser:     Recursive Descent Parser
+    srparser:     Shift-Reduce Parser
+    wordnet:      WordNet Browser
+
+PPAACCKKAAGGEE  CCOONNTTEENNTTSS
+    chartparser_app
+    chunkparser_app
+    collocations_app
+    concordance_app
+    nemo_app
+    rdparser_app
+    srparser_app
+    wordfreq_app
+    wordnet_app
+
+FFUUNNCCTTIIOONNSS
+    sseettuupp__mmoodduullee(module)
+        # skip doctests from this package
+
+DDAATTAA
+    ____wwaarrnniinnggrreeggiissttrryy____ = {'version': 4, ('nltk.app package not loaded (pl...
+
+FFIILLEE
+    /home/taha/.local/lib/python3.6/site-packages/nltk/app/__init__.py
+

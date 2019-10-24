@@ -76,6 +76,22 @@ def main():
 
     attempt_to_parse('who eat on statues', grammar, False)
     attempt_to_parse('walk your dogs to the statues', grammar)
+    attempt_to_parse('walk your dogs the dogs', grammar)
+    attempt_to_parse('walk in the parks', grammar)
+
+
+
+    #TEST False:
+    attempt_to_parse('what people walk quickly in parks', grammar, False)
+    attempt_to_parse('what should people walk their dogs quickly in parks', grammar, False)
+    attempt_to_parse('where walk their dogs quickly in parks', grammar, False)
+
+    attempt_to_parse('who walk their dogs quickly in parks', grammar)
+    attempt_to_parse('what will people walk quickly in parks', grammar)
+    attempt_to_parse('where should people walk their dogs quickly', grammar)
+    attempt_to_parse('should people walk their dogs quickly in parks', grammar)
+
+
 
 if __name__ == '__main__':
     main()

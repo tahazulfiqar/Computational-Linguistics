@@ -1,5 +1,5 @@
 S -> NP VP
-S -> VP NP
+S -> VP
 S -> Who VP
 S -> Who Aux VP
 S -> Who Aux NP VP 
@@ -9,7 +9,6 @@ S -> What Aux NP V Adv
 S -> What Aux NP V Adv PP
 S -> Where Aux NP VP
 S -> Aux NP VP
-S -> VP
 NP -> N
 NP -> Det N
 NP -> Adj N
@@ -17,10 +16,11 @@ NP -> Det Adj N
 PP -> P NP
 VP -> V
 VP -> V Adv
-VP -> V NP Adv
-VP -> V NP Adv PP
-VP -> V NP PP
 VP -> V NP
+VP -> V NP Adv
+VP -> V PP
+VP -> V NP PP
+VP -> V NP Adv PP
 Det -> 'the' | 'their' | 'your'
 Adj -> 'old' | 'red' | 'happy'
 Adv -> 'quickly' | 'slowly'
