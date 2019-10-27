@@ -1,10 +1,10 @@
 %Taha, zulfiq11 1001476379
 
-Nprp -> 'Nadia' | 'Orlando' | 'Maracana' | 'Microsoft'
-PersNPro -> 'he' | 'she' | 'they' | 'I' | 'it'
+Nprp -> 'Nadia'
+PersNPro -> 'she' | 'they'
 PosNPro -> 'your' | 'my' | 'her' | 'our'
-NComm -> 'cat' | 'boy' | 'fur'
-NPl -> 'cats'
+NSing -> 'cat' | 'boy' | 'fur'
+NPlural -> 'cats'
 NMAss -> 'snow' | 'rain' | 'bread'
 P -> 'with' | 'above' | 'near' | 'like' | 'in'
 ITVerbP -> 'arrived' | 'left' | 'ate'| 'fondled'

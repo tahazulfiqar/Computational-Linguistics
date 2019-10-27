@@ -1,16 +1,26 @@
 %Taha Zulfiqar, zulfiq11 1001476379
-S -> NP VP
+S -> NP VP | NP_PPPNoun VP_Past_Prop
 
-NP -> NP_PPPNoun | AP | Det NComm | NPl | Det NPl
+% adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
+NP -> AP | Det AP | NComm | Det NComm | PosNPro AP | PosNPro NComm
 
-%Personal Pronoun/Proper Noun
+%Personal Pronouns(she/they), Proper Nouns (Nadia, Toronto)
 NP_PPPNoun -> PersNPro | Nprp
 
+%Common Nouns
+NComm -> NSing | NPlural | NMass
+
+%Standard prepositional phrase: (in, with, to NP)
 PP -> P NP
 
+%VP that includes PP
 VP -> VPPast | VP PP | PP VP
 
-%Intransitive Verbs in past tense
+%VP case preventing Proper Noun right before PP
+VP_Past_Prop -> VPPast | VPPast PP
+
+%Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPast -> ITVerbP | ITVerbP Adv | Adv ITVerbP
 
-AP -> Adj NComm | Adj NPl | Adj Nprp | Adj NMAss | Adj AP | Det AP
+%Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
+AP -> Adj NComm | Adj AP
