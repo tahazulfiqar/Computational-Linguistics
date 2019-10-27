@@ -1,0 +1,16 @@
+%Taha Zulfiqar, zulfiq11 1001476379
+S -> NP VP
+
+NP -> NP_PPPNoun | AP | Det NComm | NPl | Det NPl
+
+%Personal Pronoun/Proper Noun
+NP_PPPNoun -> PersNPro | Nprp
+
+PP -> P NP
+
+VP -> VPPast | VP PP | PP VP
+
+%Intransitive Verbs in past tense
+VPPast -> ITVerbP | ITVerbP Adv | Adv ITVerbP
+
+AP -> Adj NComm | Adj NPl | Adj Nprp | Adj NMAss | Adj AP | Det AP

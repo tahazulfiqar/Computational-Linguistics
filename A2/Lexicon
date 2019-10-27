@@ -1,0 +1,13 @@
+%Taha, zulfiq11 1001476379
+
+Nprp -> 'Nadia' | 'Orlando' | 'Maracana' | 'Microsoft'
+PersNPro -> 'he' | 'she' | 'they' | 'I' | 'it'
+PosNPro -> 'your' | 'my' | 'her' | 'our'
+NComm -> 'cat' | 'boy' | 'fur'
+NPl -> 'cats'
+NMAss -> 'snow' | 'rain' | 'bread'
+P -> 'with' | 'above' | 'near' | 'like' | 'in'
+ITVerbP -> 'arrived' | 'left' | 'ate'| 'fondled'
+Adv -> 'slowly' | 'immediately' | 'always' | 'monthly' | 'occasionally'
+Adj -> 'young' | 'yellow' | 'long' | 'soft' | 'tall'
+Det -> 'the' | 'a' | 'an' | 'these'
