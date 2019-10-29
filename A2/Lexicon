@@ -1,13 +1,13 @@
-%Taha, zulfiq11 1001476379
+%Taha Zulfiqar, zulfiq11 1001476379
 
 %Proper nouns (names, place)
 Nprp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
 
 %Personal pronouns
-PersNPro -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
+PersProN -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
 
 %Possessive pronouns
-PosNPro -> 'your' | 'my' | 'her' | 'our'
+PosProN -> 'your' | 'my' | 'her' | 'our'
 
 %Singular nouns
 NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand'
@@ -48,7 +48,7 @@ Adj -> 'handsome' | 'long' | 'soft' | 'tall' | 'wanting'
 
 %article determiners
 Det -> 'the' | 'these' | 'a' | 'that'
-DetVow -> 'the' | 'these' | 'an' | 'that'
+DetVow -> 'an'
 
 %Aux
 
@@ -59,6 +59,9 @@ Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should' | 'would
 PerfHH -> 'has' | 'had'
 Perf -> 'have'
 
-ProgAux -> 'be'
 Prog -> 'is' | 'am' | 'are' | 'was'
 ProgPl -> 'were' | 'are'
+
+ProgBe -> 'be'
+ProgBePast -> 'been'
+ProgBeGer -> 'being'

@@ -1,29 +1,33 @@
 %Taha Zulfiqar, zulfiq11 1001476379
-S -> NP VP | NP_PPPNoun VP_Past_Prop
+
+S -> NP VP | NP_PPNoun VP_Past_Prop
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
-NP -> AP | DetP AP | NComm | DetP NComm | PosNPro NComm
+NP -> AP | DetP AP | NComm | DetP NComm | DetVow NSingVow
 
 %Combines possessive pronouns with determiners 
-DetP -> Det | PosNPro
+DetP -> Det | PosProN
 
 %Personal Pronouns(she/they), Proper Nouns (Nadia, Toronto)
-NP_PPPNoun -> PersNPro | Nprp
+NP_PPNoun -> PersProN | Nprp
 
 %Common Nouns
-NComm -> NSing | NPlural | NMass
+NComm -> NSing | NPlural | NMass | NSingVow
 
 %Standard prepositional phrase: (in, with, to NP)
-PP -> P NP
+PP -> P NP | P Nprp
 
 %VP that includes PP
-VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux
+VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux | ProgPastBe
 
 %VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux
+VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux | ProgPastBe
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
+
+%Intransitive Verbs in gerundive tense
+VPGerIT -> ITGer | ITGer Adv | Adv ITGer
 
 %Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
 AdvP -> NP Adv | Nprp Adv | PP Adv
@@ -41,7 +45,10 @@ PerfAux -> PerfAll VPPastIT
 ModPerf -> Modal Perf VPPastIT
 
 %Prog aux which takes into consideration of present and past (Nadia was leaving)
-ProgAux -> Prog ITGer
+ProgAux -> Prog VPGerIT
 
-%Future Progressive Auxilary with modal (will/could/can leave)
-FutProgMod -> Modal ITVerbPres
+%Future Progressive Auxilary with modal (will/could/can leave) / (will be leaving)
+FutProgMod -> Modal ITVerbPres | Modal ProgBe VPGerIT
+
+%Utilization of been  (could? has/had/have been leaving)
+ProgPastBe -> PerfAll ProgBePast VPGerIT | Modal PerfAll ProgBePast VPGerIT
