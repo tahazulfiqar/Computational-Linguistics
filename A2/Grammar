@@ -14,13 +14,25 @@ NComm -> NSing | NPlural | NMass
 PP -> P NP
 
 %VP that includes PP
-VP -> VPPast | VP PP | PP VP
+VP -> VPPastIT | VP PP | PP VP | VPPastIT NP | VP AdvP | PerfAux | ModPerf
 
 %VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPast | VPPast PP
+VP_Past_Prop -> VPPastIT | VPPastIT PP | VPPastIT NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
-VPPast -> ITVerbP | ITVerbP Adv | Adv ITVerbP
+VPPastIT -> ITVerbP | ITVerbP Adv | Adv ITVerbP
+
+%Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
+AdvP -> NP Adv | Nprp Adv | PP Adv
 
 %Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
 AP -> Adj NComm | Adj AP
+
+%combines has had have
+PerfAll -> PerfHH | Perf
+
+%Perfect Aux: has/have arrived
+PerfAux -> PerfAll VPPastIT
+
+%Modal Perfect requires only have
+ModPerf -> Modal Perf VPPastIT

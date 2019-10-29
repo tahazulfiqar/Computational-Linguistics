@@ -1,13 +1,44 @@
 %Taha, zulfiq11 1001476379
 
+%Proper nouns (names, place)
 Nprp -> 'Nadia'
+
+%Personal pronouns
 PersNPro -> 'she' | 'they'
+
+%Possessive pronouns
 PosNPro -> 'your' | 'my' | 'her' | 'our'
+
+%Singular nouns
 NSing -> 'cat' | 'boy' | 'fur'
+
+%Plural nouns
 NPlural -> 'cats'
+
+%Mass nouns
 NMAss -> 'snow' | 'rain' | 'bread'
+
+%Prepositions
 P -> 'with' | 'above' | 'near' | 'like' | 'in'
+
+%Intransitive past tense verbs
 ITVerbP -> 'arrived' | 'left' | 'ate'| 'fondled'
-Adv -> 'slowly' | 'immediately' | 'always' | 'monthly' | 'occasionally'
-Adj -> 'young' | 'yellow' | 'long' | 'soft' | 'tall'
+
+%Adverbs of manner: immediately, accurately, carefully, etc
+Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always'
+
+Adj -> 'handsome' | 'long' | 'soft' | 'tall'
+
+%article determiners
 Det -> 'the' | 'a' | 'an' | 'these'
+
+%Aux
+
+%Modal verbs
+Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should'
+
+% have/has + past principle
+PerfHH -> 'has' | 'had'
+Perf -> 'have'
+
+ProgAux -> 'be'
