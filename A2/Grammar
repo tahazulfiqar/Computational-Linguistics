@@ -2,7 +2,10 @@
 S -> NP VP | NP_PPPNoun VP_Past_Prop
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
-NP -> AP | Det AP | NComm | Det NComm | PosNPro AP | PosNPro NComm
+NP -> AP | DetP AP | NComm | DetP NComm | PosNPro NComm
+
+%Combines possessive pronouns with determiners 
+DetP -> Det | PosNPro
 
 %Personal Pronouns(she/they), Proper Nouns (Nadia, Toronto)
 NP_PPPNoun -> PersNPro | Nprp
@@ -14,10 +17,10 @@ NComm -> NSing | NPlural | NMass
 PP -> P NP
 
 %VP that includes PP
-VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf
+VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux
 
 %VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPastIT | VPPastIT PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf
+VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
@@ -34,5 +37,11 @@ PerfAll -> PerfHH | Perf
 %Perfect Aux: has/have arrived
 PerfAux -> PerfAll VPPastIT
 
-%Modal Perfect requires only have
+%Modal Perfect requires only have (could/must have left)
 ModPerf -> Modal Perf VPPastIT
+
+%Prog aux which takes into consideration of present and past (Nadia was leaving)
+ProgAux -> Prog ITGer
+
+%Future Progressive Auxilary with modal (will/could/can leave)
+FutProgMod -> Modal ITVerbPres

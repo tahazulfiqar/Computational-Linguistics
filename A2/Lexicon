@@ -29,16 +29,22 @@ ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'de
 %Intransitive present tense verbs
 ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand'
 
+%Intransitive gerund verbs
+ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding'
+
 %Transitive past tense verbs
 TVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'reminded' | 'rewarded' | 'found' | 'gave'
 
 %Transitive present tense verbs
-TVerbPres -> 'help' | 'fondle' |'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give'
+TVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give'
+
+%Transitive gerund verbs
+TGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'giving'
 
 %Adverbs of manner: immediately, accurately, carefully, etc
 Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always' | 'already' | 'really' | 'after' | 'before'
 
-Adj -> 'handsome' | 'long' | 'soft' | 'tall'
+Adj -> 'handsome' | 'long' | 'soft' | 'tall' | 'wanting'
 
 %article determiners
 Det -> 'the' | 'these' | 'a' | 'that'
@@ -54,4 +60,5 @@ PerfHH -> 'has' | 'had'
 Perf -> 'have'
 
 ProgAux -> 'be'
-PastProg -> 'was'
+Prog -> 'is' | 'am' | 'are' | 'was'
+ProgPl -> 'were' | 'are'
