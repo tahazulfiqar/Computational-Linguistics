@@ -14,13 +14,13 @@ NComm -> NSing | NPlural | NMass
 PP -> P NP
 
 %VP that includes PP
-VP -> VPPastIT | VP PP | PP VP | VPPastIT NP | VP AdvP | PerfAux | ModPerf
+VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf
 
 %VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPastIT | VPPastIT PP | VPPastIT NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf
+VP_Past_Prop -> VPPastIT | VPPastIT PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
-VPPastIT -> ITVerbP | ITVerbP Adv | Adv ITVerbP
+VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
 
 %Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
 AdvP -> NP Adv | Nprp Adv | PP Adv

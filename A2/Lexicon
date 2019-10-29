@@ -1,16 +1,18 @@
 %Taha, zulfiq11 1001476379
 
 %Proper nouns (names, place)
-Nprp -> 'Nadia'
+Nprp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
 
 %Personal pronouns
-PersNPro -> 'she' | 'they'
+PersNPro -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
 
 %Possessive pronouns
 PosNPro -> 'your' | 'my' | 'her' | 'our'
 
 %Singular nouns
-NSing -> 'cat' | 'boy' | 'fur'
+NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand'
+
+NSingVow -> 'eggplant' | 'autoclave' | 'elephant' | 'autopoiesis'
 
 %Plural nouns
 NPlural -> 'cats'
@@ -19,26 +21,37 @@ NPlural -> 'cats'
 NMAss -> 'snow' | 'rain' | 'bread'
 
 %Prepositions
-P -> 'with' | 'above' | 'near' | 'like' | 'in'
+P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before'
 
 %Intransitive past tense verbs
-ITVerbP -> 'arrived' | 'left' | 'ate'| 'fondled'
+ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded'
+
+%Intransitive present tense verbs
+ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand'
+
+%Transitive past tense verbs
+TVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'reminded' | 'rewarded' | 'found' | 'gave'
+
+%Transitive present tense verbs
+TVerbPres -> 'help' | 'fondle' |'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give'
 
 %Adverbs of manner: immediately, accurately, carefully, etc
-Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always'
+Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always' | 'already' | 'really' | 'after' | 'before'
 
 Adj -> 'handsome' | 'long' | 'soft' | 'tall'
 
 %article determiners
-Det -> 'the' | 'a' | 'an' | 'these'
+Det -> 'the' | 'these' | 'a' | 'that'
+DetVow -> 'the' | 'these' | 'an' | 'that'
 
 %Aux
 
 %Modal verbs
-Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should'
+Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should' | 'would'
 
-% have/has + past principle
+% Perfect Aux
 PerfHH -> 'has' | 'had'
 Perf -> 'have'
 
 ProgAux -> 'be'
+PastProg -> 'was'
