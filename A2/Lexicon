@@ -65,3 +65,5 @@ ProgPl -> 'were' | 'are'
 ProgBe -> 'be'
 ProgBePast -> 'been'
 ProgBeGer -> 'being'
+
+Inf -> 'to'

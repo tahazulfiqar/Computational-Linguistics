@@ -12,4 +12,11 @@ helper.autotest('Positive', grammar)
 print('Test Negatives')
 helper.autotest('Negative', grammar)
 
+print('Test Overgen')
+helper.autotest('Overgen', grammar)
+
+print('Test Undergen')
+helper.autotest('Undergen', grammar)
+
+
 #helper.manutest(grammar)

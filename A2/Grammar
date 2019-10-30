@@ -18,16 +18,19 @@ NComm -> NSing | NPlural | NMass | NSingVow
 PP -> P NP | P Nprp
 
 %VP that includes PP
-VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux | ProgPastBe
+VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
 
 %VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux | ProgPastBe
+VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
 
 %Intransitive Verbs in gerundive tense
 VPGerIT -> ITGer | ITGer Adv | Adv ITGer
+
+%Intransitive present tense verbs
+VPPresIT -> ITVerbPres | ITVerbPres Adv | Adv ITVerbPres
 
 %Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
 AdvP -> NP Adv | Nprp Adv | PP Adv
@@ -48,7 +51,9 @@ ModPerf -> Modal Perf VPPastIT
 ProgAux -> Prog VPGerIT
 
 %Future Progressive Auxilary with modal (will/could/can leave) / (will be leaving)
-FutProgMod -> Modal ITVerbPres | Modal ProgBe VPGerIT
+FutProgMod -> Modal VPPresIT | Modal ProgBe VPGerIT
 
-%Utilization of been  (could? has/had/have been leaving)
-ProgPastBe -> PerfAll ProgBePast VPGerIT | Modal PerfAll ProgBePast VPGerIT
+%Utilization of been/be  (could? has/had/have been leaving)
+ProgPastBe -> PerfAll ProgBePast VPGerIT | Modal PerfAll ProgBePast VPGerIT | Modal ProgBe VPPastIT
+
+InfV -> Inf VPPresIT
