@@ -24,22 +24,43 @@ NMAss -> 'snow' | 'rain' | 'bread'
 P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before'
 
 %Intransitive past tense verbs
-ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded'
+ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped'
 
 %Intransitive present tense verbs
-ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand'
+ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand' | 'help'
 
 %Intransitive gerund verbs
-ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding'
+ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping'
 
 %Transitive past tense verbs
-TVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'reminded' | 'rewarded' | 'found' | 'gave'
+TVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'reminded' | 'rewarded' | 'found' | 'gave' | 'wanted'
 
 %Transitive present tense verbs
-TVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give'
+TVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give' | 'want'
 
 %Transitive gerund verbs
-TGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'giving'
+TGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'giving' | 'wanting'
+
+%Monotransitive past tense verbs 
+MTVerbPast ->
+
+%Monotransitive present tense verbs 
+MTVerbPres ->
+
+%Monotransitive gerund verbs 
+MTGer -> 
+
+%Ditransitive past tense verbs 
+DiTVerbPast ->
+
+%Ditransitive present tense verbs 
+DiTVerbPres ->
+
+%Ditransitive gerund verbs 
+DiTGer -> 
+
+
+
 
 %Adverbs of manner: immediately, accurately, carefully, etc
 Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always' | 'already' | 'really' | 'after' | 'before'
