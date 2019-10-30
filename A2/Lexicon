@@ -7,7 +7,7 @@ Nprp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
 PersProN -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
 
 %Possessive pronouns
-PosProN -> 'your' | 'my' | 'her' | 'our'
+PosProN -> 'your' | 'my' | 'her' | 'our' | 'their'
 
 %Singular nouns
 NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward'
@@ -27,19 +27,19 @@ P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 
 ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won'
 
 %Intransitive present tense verbs
-ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand' | 'help' | 'shoot' | 'believe' | 'win'
+ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'eats' | 'aspire' | 'jump' | 'want' | 'demand' | 'help' | 'shoot' | 'believe' | 'win'
 
 %Intransitive gerund verbs
 ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping' | 'shooting' | 'believing' | 'winning'
 
 %Monotransitive past tense verbs 
-MTVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted'
+MTVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left'
 
 %Monotransitive present tense verbs 
-MTVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want'
+MTVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want' | 'leave'
 
 %Monotransitive gerund verbs 
-MTGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting'
+MTGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving'
 
 %Ditransitive past tense verbs 
 DiTVerbPast -> 'brought' | 'told' | 'reminded' | 'gave'

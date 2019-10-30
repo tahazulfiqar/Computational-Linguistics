@@ -1,9 +1,9 @@
 %Taha Zulfiqar, zulfiq11 1001476379
 
-S -> NP VP | NP_PPNoun VP_Past_Prop
+S -> NP VP | NP_PPNoun VPItProp
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
-NP -> AP | DetP AP | NComm | DetP NComm | DetVow NSingVow
+NP -> AP | DetP AP | DetP NComm | DetVow NSingVow
 
 %Combines possessive pronouns with determiners 
 DetP -> Det | PosProN
@@ -17,11 +17,16 @@ NComm -> NSing | NPlural | NMass | NSingVow
 %Standard prepositional phrase: (in, with, to NP)
 PP -> P NP | P Nprp
 
-%VP that includes PP
-VP -> VPPastIT | VP PP | PP VP | VP NP | VP AdvP | PerfAux | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
+VP -> VP_It | VP_T
 
-%VP case preventing Proper Noun right before PP
-VP_Past_Prop -> VPPastIT | VP_Past_Prop PP | VP_Past_Prop NP | VP_Past_Prop AdvP | PerfHH VPPastIT | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
+%VP for intrasitivies that includes PP
+VP_It -> VPItProp | PP VP_It
+
+%VP for transitives
+VP_T -> VPPastT 
+
+%Intransitive involving Proper Noun, excludes preposition before PP
+VPItProp -> VPPastIT | VPItProp PP | VPItProp AdvP | PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
@@ -31,6 +36,18 @@ VPGerIT -> ITGer | ITGer Adv | Adv ITGer
 
 %Intransitive present tense verbs
 VPPresIT -> ITVerbPres | ITVerbPres Adv | Adv ITVerbPres
+
+%Transitive Verb in paste tense (helped the cat) (brought, told, reminded, gave):
+VPPastT -> VPPastMT | VPPastDiT
+
+VPPastMT -> MTVerbPast NP | Adv MTVerbPast NP | MTVerbPast NP Adv
+VPPastDiT -> DiTVerbPast Nprp NP | DiTVerbPast PosProN NP
+
+%Transitive Verbs in gerundive tense (fondling) -> 
+VPGerT -> MTGer | MTGer Adv | Adv MTGer | DiTGer | DiTGer Adv | Adv DiTGer
+
+%Transitive present tense verbs (fondle)
+VPPresT -> MTVerbPres NP | Adv MTVerbPres NP
 
 %Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
 AdvP -> NP Adv | Nprp Adv | PP Adv
@@ -50,14 +67,11 @@ TGer -> MTGer | DiTGer
 %combines has had have
 PerfAll -> PerfHH | Perf
 
-%Perfect Aux: has/have arrived
-PerfAux -> PerfAll VPPastIT
-
 %Modal Perfect requires only have (could/must have left)
 ModPerf -> Modal Perf VPPastIT
 
 %Prog aux which takes into consideration of present and past (Nadia was leaving)
-ProgAux -> Prog VPGerIT
+ProgAux -> Prog VPGerIT | Prog VPGerT
 
 %Future Progressive Auxilary with modal (will/could/can leave) / (will be leaving)
 FutProgMod -> Modal VPPresIT | Modal ProgBe VPGerIT
@@ -66,3 +80,6 @@ FutProgMod -> Modal VPPresIT | Modal ProgBe VPGerIT
 ProgPastBe -> PerfAll ProgBePast VPGerIT | Modal PerfAll ProgBePast VPGerIT | Modal ProgBe VPPastIT
 
 InfV -> Inf VPPresIT
+
+%Past Principle for intransitive and transitive (existential passive) (have/had/has)
+PastPrin -> PerfAll VPPastIT | PerfAll VPPastT
