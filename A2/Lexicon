@@ -10,7 +10,7 @@ PersProN -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 
 PosProN -> 'your' | 'my' | 'her' | 'our'
 
 %Singular nouns
-NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand'
+NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward'
 
 NSingVow -> 'eggplant' | 'autoclave' | 'elephant' | 'autopoiesis'
 
@@ -24,43 +24,31 @@ NMAss -> 'snow' | 'rain' | 'bread'
 P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before'
 
 %Intransitive past tense verbs
-ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped'
+ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won'
 
 %Intransitive present tense verbs
-ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand' | 'help'
+ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'aspire' | 'jump' | 'want' | 'demand' | 'help' | 'shoot' | 'believe' | 'win'
 
 %Intransitive gerund verbs
-ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping'
-
-%Transitive past tense verbs
-TVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'reminded' | 'rewarded' | 'found' | 'gave' | 'wanted'
-
-%Transitive present tense verbs
-TVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'give' | 'want'
-
-%Transitive gerund verbs
-TGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'giving' | 'wanting'
+ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping' | 'shooting' | 'believing' | 'winning'
 
 %Monotransitive past tense verbs 
-MTVerbPast ->
+MTVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted'
 
 %Monotransitive present tense verbs 
-MTVerbPres ->
+MTVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want'
 
 %Monotransitive gerund verbs 
-MTGer -> 
+MTGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting'
 
 %Ditransitive past tense verbs 
-DiTVerbPast ->
+DiTVerbPast -> 'brought' | 'told' | 'reminded' | 'gave'
 
 %Ditransitive present tense verbs 
-DiTVerbPres ->
+DiTVerbPres -> 'bring' | 'tell' | 'remind' | 'give'
 
-%Ditransitive gerund verbs 
-DiTGer -> 
-
-
-
+%Gerund version of ditransitive verbs 
+DiTGer -> 'bringing' | 'telling' | 'reminding' | 'giving'
 
 %Adverbs of manner: immediately, accurately, carefully, etc
 Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always' | 'already' | 'really' | 'after' | 'before'
