@@ -1,6 +1,6 @@
 %Taha Zulfiqar, zulfiq11 1001476379
 
-S -> NP VP | NP_PPNoun VPItProp
+S -> NP VP | NP_PPNoun VPItProp | NP_PPNoun VPTProp
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
 NP -> AP | DetP AP | DetP NComm | DetVow NSingVow
@@ -23,10 +23,10 @@ VP -> VP_It | VP_T
 VP_It -> VPItProp | PP VP_It
 
 %VP for transitives
-VP_T -> VPPastT 
+VP_T -> VPTProp | PP VP_T 
 
 %Intransitive involving Proper Noun, excludes preposition before PP
-VPItProp -> VPPastIT | VPItProp PP | VPItProp AdvP | PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
+VPItProp -> VPPastIT | VPItProp PP | PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
@@ -37,20 +37,23 @@ VPGerIT -> ITGer | ITGer Adv | Adv ITGer
 %Intransitive present tense verbs
 VPPresIT -> ITVerbPres | ITVerbPres Adv | Adv ITVerbPres
 
+%transitive involving Proper Noun, excludes preposition before PP
+VPTProp -> VPPastT | VPTProp PP
+
 %Transitive Verb in paste tense (helped the cat) (brought, told, reminded, gave):
 VPPastT -> VPPastMT | VPPastDiT
 
-VPPastMT -> MTVerbPast NP | Adv MTVerbPast NP | MTVerbPast NP Adv
-VPPastDiT -> DiTVerbPast Nprp NP | DiTVerbPast PosProN NP
+%Includes proper noun
+NP_AllObj -> NP | Nprp
+
+VPPastMT -> MTVerbPast NP_AllObj | Adv MTVerbPast NP_AllObj | MTVerbPast NP_AllObj Adv
+VPPastDiT -> DiTVerbPast Nprp NP_AllObj | DiTVerbPast PosProN NP_AllObj
 
 %Transitive Verbs in gerundive tense (fondling) -> 
 VPGerT -> MTGer | MTGer Adv | Adv MTGer | DiTGer | DiTGer Adv | Adv DiTGer
 
 %Transitive present tense verbs (fondle)
 VPPresT -> MTVerbPres NP | Adv MTVerbPres NP
-
-%Adverb Phrase (Nadia/the brown cat quickly), (Nadia/the brown cat inside), (with the cat quickly)
-AdvP -> NP Adv | Nprp Adv | PP Adv
 
 %Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
 AP -> Adj NComm | Adj AP
@@ -68,7 +71,7 @@ TGer -> MTGer | DiTGer
 PerfAll -> PerfHH | Perf
 
 %Modal Perfect requires only have (could/must have left)
-ModPerf -> Modal Perf VPPastIT
+ModPerf -> Modal Perf VPPastIT | Modal Perf ProgBePast VPPastIT
 
 %Prog aux which takes into consideration of present and past (Nadia was leaving)
 ProgAux -> Prog VPGerIT | Prog VPGerT

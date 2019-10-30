@@ -10,7 +10,7 @@ PersProN -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 
 PosProN -> 'your' | 'my' | 'her' | 'our' | 'their'
 
 %Singular nouns
-NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward'
+NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward' | 'boat'
 
 NSingVow -> 'eggplant' | 'autoclave' | 'elephant' | 'autopoiesis'
 
@@ -33,13 +33,13 @@ ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'eats' | 'aspire' | 'jump' | 'want' |
 ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping' | 'shooting' | 'believing' | 'winning'
 
 %Monotransitive past tense verbs 
-MTVerbPast -> 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left'
+MTVerbPast -> 'demanded' | 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left'
 
 %Monotransitive present tense verbs 
-MTVerbPres -> 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want' | 'leave'
+MTVerbPres -> 'demand' | 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want' | 'leave'
 
 %Monotransitive gerund verbs 
-MTGer -> 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving'
+MTGer -> 'demanding' | 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving'
 
 %Ditransitive past tense verbs 
 DiTVerbPast -> 'brought' | 'told' | 'reminded' | 'gave'
