@@ -1,32 +1,47 @@
 %Taha Zulfiqar, zulfiq11 1001476379
 
+%======================SENTENCES (S)===================
+
 S -> NP VP | NP_PPNoun VPItProp | NP_PPNoun VPTProp
+
+
+%======================NOUN PHRASE (NP)===================
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
 NP -> AP | DetP AP | DetP NComm | DetVow NSingVow
 
-%Combines possessive pronouns with determiners 
-DetP -> Det | PosProN
-
 %Personal Pronouns(she/they), Proper Nouns (Nadia, Toronto)
-NP_PPNoun -> PersProN | Nprp
+NP_PPNoun -> NPersp | NPrp
 
 %Common Nouns
 NComm -> NSing | NPlural | NMass | NSingVow
 
-%Standard prepositional phrase: (in, with, to NP)
-PP -> P NP | P Nprp
+%Includes proper noun
+NP_AllObj -> NP | NPrp
 
-VP -> VP_It | VP_T
+%Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
+AP -> Adj NComm | Adj AP
+
+%======================Deteminers (Det)===================
+%Combines possessive pronouns with determiners 
+DetP -> Det | PosProN
+
+%======================PREPOSITION PHASE (PP)===================
+
+%Standard prepositional phrase: (in, with, to NP)
+PP -> P NP | P NPrp
+
+%======================VERB PHRASE (VP)===================
+
+VP -> VP_It | VP_T 
+
+%======================VERB PHRASE Intransitive (VP_It)===================
 
 %VP for intrasitivies that includes PP
 VP_It -> VPItProp | PP VP_It
 
-%VP for transitives
-VP_T -> VPTProp | PP VP_T 
-
 %Intransitive involving Proper Noun, excludes preposition before PP
-VPItProp -> VPPastIT | VPItProp PP | PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
+VPItProp -> VPPastIT | VPItProp PP | VP_Aux_It
 
 %Intransitive Verbs in past tense (left, arrived), (arrived quickly), (quickly left)
 VPPastIT -> ITVerbPast | ITVerbPast Adv | Adv ITVerbPast
@@ -37,26 +52,25 @@ VPGerIT -> ITGer | ITGer Adv | Adv ITGer
 %Intransitive present tense verbs
 VPPresIT -> ITVerbPres | ITVerbPres Adv | Adv ITVerbPres
 
+%======================VERB PHRASE Transitive (VP_T)===================
+
+%VP for transitives
+VP_T -> VPTProp | PP VP_T 
+
 %transitive involving Proper Noun, excludes preposition before PP
 VPTProp -> VPPastT | VPTProp PP
 
 %Transitive Verb in paste tense (helped the cat) (brought, told, reminded, gave):
 VPPastT -> VPPastMT | VPPastDiT
 
-%Includes proper noun
-NP_AllObj -> NP | Nprp
-
 VPPastMT -> MTVerbPast NP_AllObj | Adv MTVerbPast NP_AllObj | MTVerbPast NP_AllObj Adv
-VPPastDiT -> DiTVerbPast Nprp NP_AllObj | DiTVerbPast PosProN NP_AllObj
+VPPastDiT -> DiTVerbPast NPrp NP_AllObj | DiTVerbPast PosProN NP_AllObj
 
 %Transitive Verbs in gerundive tense (fondling) -> 
 VPGerT -> MTGer | MTGer Adv | Adv MTGer | DiTGer | DiTGer Adv | Adv DiTGer
 
 %Transitive present tense verbs (fondle)
 VPPresT -> MTVerbPres NP | Adv MTVerbPres NP
-
-%Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
-AP -> Adj NComm | Adj AP
 
 %Transitive past tense verbs
 TVerbPast -> MTVerbPast | DiTVerbPast
@@ -67,14 +81,15 @@ TVerbPres -> MTVerbPres | DiTVerbPres
 %Transitive gerund verbs
 TGer -> MTGer | DiTGer
 
-%combines has had have
-PerfAll -> PerfHH | Perf
+%======================Auxilaries===================
+
+VP_Aux_It -> PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
 
 %Modal Perfect requires only have (could/must have left)
 ModPerf -> Modal Perf VPPastIT | Modal Perf ProgBePast VPPastIT
 
 %Prog aux which takes into consideration of present and past (Nadia was leaving)
-ProgAux -> Prog VPGerIT | Prog VPGerT
+ProgAux -> Prog VPGerIT | Prog VPPastIT | Prog VPGerT | Prog VPPastT
 
 %Future Progressive Auxilary with modal (will/could/can leave) / (will be leaving)
 FutProgMod -> Modal VPPresIT | Modal ProgBe VPGerIT
@@ -86,3 +101,9 @@ InfV -> Inf VPPresIT
 
 %Past Principle for intransitive and transitive (existential passive) (have/had/has)
 PastPrin -> PerfAll VPPastIT | PerfAll VPPastT
+
+
+%====================Other===================
+
+%combines has had have
+PerfAll -> PerfHH | Perf

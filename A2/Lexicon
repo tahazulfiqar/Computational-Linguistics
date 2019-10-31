@@ -1,13 +1,12 @@
 %Taha Zulfiqar, zulfiq11 1001476379
 
+%======================NOUNS===================
+
 %Proper nouns (names, place)
-Nprp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
+NPrp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
 
 %Personal pronouns
-PersProN -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
-
-%Possessive pronouns
-PosProN -> 'your' | 'my' | 'her' | 'our' | 'their'
+NPersp -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
 
 %Singular nouns
 NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward' | 'boat'
@@ -20,8 +19,14 @@ NPlural -> 'cats'
 %Mass nouns
 NMAss -> 'snow' | 'rain' | 'bread'
 
+%=======================Prepositions====================
+
 %Prepositions
 P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before'
+
+%=======================Verbs====================
+
+%========Intransitive Verbs=========
 
 %Intransitive past tense verbs
 ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won'
@@ -32,6 +37,8 @@ ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'eats' | 'aspire' | 'jump' | 'want' |
 %Intransitive gerund verbs
 ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' | 'demanding' | 'helping' | 'shooting' | 'believing' | 'winning'
 
+%========Monotransitive Verbs=========
+
 %Monotransitive past tense verbs 
 MTVerbPast -> 'demanded' | 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left'
 
@@ -40,6 +47,8 @@ MTVerbPres -> 'demand' | 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' 
 
 %Monotransitive gerund verbs 
 MTGer -> 'demanding' | 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving'
+
+%========Ditransitive Verbs=========
 
 %Ditransitive past tense verbs 
 DiTVerbPast -> 'brought' | 'told' | 'reminded' | 'gave'
@@ -50,16 +59,25 @@ DiTVerbPres -> 'bring' | 'tell' | 'remind' | 'give'
 %Gerund version of ditransitive verbs 
 DiTGer -> 'bringing' | 'telling' | 'reminding' | 'giving'
 
+
+%========Adverbs=========
+
 %Adverbs of manner: immediately, accurately, carefully, etc
 Adv -> 'immediately' | 'slowly' | 'occasionally' | 'always' | 'already' | 'really' | 'after' | 'before'
 
+%========Adjectives=========
+
 Adj -> 'handsome' | 'long' | 'soft' | 'tall' | 'wanting'
 
+%========Determiners=========
 %article determiners
 Det -> 'the' | 'these' | 'a' | 'that'
 DetVow -> 'an'
 
-%Aux
+%Possessive pronouns
+PosProN -> 'your' | 'my' | 'her' | 'our' | 'their'
+
+%========Auxilary=========
 
 %Modal verbs
 Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should' | 'would'
@@ -68,9 +86,8 @@ Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should' | 'would
 PerfHH -> 'has' | 'had'
 Perf -> 'have'
 
-Prog -> 'is' | 'am' | 'are' | 'was'
-ProgPl -> 'were' | 'are'
-
+%Progressive Aux
+Prog -> 'is' | 'am' | 'are' | 'was' | 'were'
 ProgBe -> 'be'
 ProgBePast -> 'been'
 ProgBeGer -> 'being'
