@@ -17,13 +17,13 @@ NP_PPNoun -> NPersp | NPrp
 NComm -> NSing | NPlural | NMass | NSingVow
 
 %Includes proper noun
-NP_AllObj -> NP | NPrp
+NP_AllObj -> NP | NPrp | PosProN
 
 %Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
 AP -> Adj NComm | Adj AP
 
 %======================Deteminers (Det)===================
-%Combines possessive pronouns with determiners 
+%Can be possessive pronouns or determiners 
 DetP -> Det | PosProN
 
 %======================PREPOSITION PHASE (PP)===================
@@ -62,7 +62,6 @@ VPTProp -> VPPastT | VPTProp PP
 
 %Transitive Verb in paste tense (helped the cat) (brought, told, reminded, gave):
 VPPastT -> VPPastMT | VPPastDiT
-
 VPPastMT -> MTVerbPast NP_AllObj | Adv MTVerbPast NP_AllObj | MTVerbPast NP_AllObj Adv
 VPPastDiT -> DiTVerbPast NPrp NP_AllObj | DiTVerbPast PosProN NP_AllObj
 
