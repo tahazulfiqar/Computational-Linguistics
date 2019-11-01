@@ -2,22 +2,24 @@
 
 %======================SENTENCES (S)===================
 
-S -> NP VP | NP_PPNoun VPItProp | NP_PPNoun VPTProp
-
+S -> NP VP | NP_PPNoun VPProp
 
 %======================NOUN PHRASE (NP)===================
 
 % adj phase (see below), (det AP), common nouns (the cat/cats), her brown cat/her cat
-NP -> AP | DetP AP | DetP NComm | DetVow NSingVow
+NP -> AP | DetP AP | DetP NComm | DetVow NSingVow | NMass
 
 %Personal Pronouns(she/they), Proper Nouns (Nadia, Toronto)
-NP_PPNoun -> NPersp | NPrp
+NP_PPNoun -> NPerspSubj | NPrp
 
 %Common Nouns
 NComm -> NSing | NPlural | NMass | NSingVow
 
 %Includes proper noun
-NP_AllObj -> NP | NPrp | PosProN
+NP_AllObj -> NP | NPrp
+
+%Includes possessive pronoun acting as a noun (they told her to jump)
+NP_AllObj_Pos -> NP_AllObj | PosProN
 
 %Adj common noun (brown cat), brown cats, soft snow, soft wet snow/cat/cats
 AP -> Adj NComm | Adj AP
@@ -29,11 +31,12 @@ DetP -> Det | PosProN
 %======================PREPOSITION PHASE (PP)===================
 
 %Standard prepositional phrase: (in, with, to NP)
-PP -> P NP | P NPrp
+PP -> P NP_AllObj | P NPersPObj
 
 %======================VERB PHRASE (VP)===================
 
-VP -> VP_It | VP_T 
+VP -> VP_It | VP_T | VP_RelPRo
+VPProp -> VPItProp | VPTProp | VP_RelPRo
 
 %======================VERB PHRASE Intransitive (VP_It)===================
 
@@ -54,55 +57,61 @@ VPPresIT -> ITVerbPres | ITVerbPres Adv | Adv ITVerbPres
 
 %======================VERB PHRASE Transitive (VP_T)===================
 
-%VP for transitives
-VP_T -> VPTProp | PP VP_T 
+VP_T -> VPTProp | PP VP_It
 
-%transitive involving Proper Noun, excludes preposition before PP
-VPTProp -> VPPastT | VPTProp PP
+%Transitive involving Proper Noun, excludes preposition before PP
+VPTProp -> VPPastTa | VPTProp PP | VP_Aux_T
 
-%Transitive Verb in paste tense (helped the cat) (brought, told, reminded, gave):
-VPPastT -> VPPastMT | VPPastDiT
-VPPastMT -> MTVerbPast NP_AllObj | Adv MTVerbPast NP_AllObj | MTVerbPast NP_AllObj Adv
-VPPastDiT -> DiTVerbPast NPrp NP_AllObj | DiTVerbPast PosProN NP_AllObj
+VPPastTa -> VPPastT | Adv VPPastT | VPPastT Adv | VPPastDiT | Adv VPPastDiT | VPPastDiT Adv
 
-%Transitive Verbs in gerundive tense (fondling) -> 
-VPGerT -> MTGer | MTGer Adv | Adv MTGer | DiTGer | DiTGer Adv | Adv DiTGer
+%Transitive Verbs in past tense (fondled the eggplants), (quickly fondled the eggplants), (fondled the eggplants quickly)
+VPPastT -> TVerbPast NP_AllObj_Pos
 
-%Transitive present tense verbs (fondle)
-VPPresT -> MTVerbPres NP | Adv MTVerbPres NP
+%Ditransitive form
+VPPastDiT -> TVerbPast NP_AllObj_Pos Inf VerbPres
 
-%Transitive past tense verbs
-TVerbPast -> MTVerbPast | DiTVerbPast
+%Transitive Verbs in gerundive tense (fondling, fondling quickly, quickly fondling)
+VPGerT -> TGer | TGer Adv | Adv TGer
 
-%Transitive present tense verbs
-TVerbPres -> MTVerbPres | DiTVerbPres
+%======================Sentential Complements===================
 
-%Transitive gerund verbs
-TGer -> MTGer | DiTGer
+%Relative pronoun (that) and sentence complement
+VP_RelPRo -> RelPRoNVerbs RelProN S | RelPRoNVerbs S
 
 %======================Auxilaries===================
 
-VP_Aux_It -> PastPrin | ModPerf | FutProgMod | ProgAux | ProgPastBe | InfV
+VP_Aux_It -> PastPrin | ModPerf | FutProgMod | ProgAuxIT | ProgPastBe | InfV | ModPastBe | ProgPass
+VP_Aux_T -> ProgAuxT
 
 %Modal Perfect requires only have (could/must have left)
-ModPerf -> Modal Perf VPPastIT | Modal Perf ProgBePast VPPastIT
+ModPerf -> Modal Perf VPPastIT
 
-%Prog aux which takes into consideration of present and past (Nadia was leaving)
-ProgAux -> Prog VPGerIT | Prog VPPastIT | Prog VPGerT | Prog VPPastT
+%Prog aux (utilizes gerundive is fondling)
+ProgAuxIT -> Prog VPGerIT | Prog VPPastIT | Prog VerbPast
+ProgAuxT -> Prog VPGerT NP_AllObj
 
 %Future Progressive Auxilary with modal (will/could/can leave) / (will be leaving)
 FutProgMod -> Modal VPPresIT | Modal ProgBe VPGerIT
 
-%Utilization of been/be  (could? has/had/have been leaving)
-ProgPastBe -> PerfAll ProgBePast VPGerIT | Modal PerfAll ProgBePast VPGerIT | Modal ProgBe VPPastIT
+ModPastBe -> Modal ProgPastBe | Modal ProgBe VPPastIT | Modal Perf ProgBePast VPPastIT
+
+%Utilization of been/be  (has/had/have been leaving)
+ProgPastBe -> PerfAll ProgBePast VPGerIT | PerfAll ProgBePast VPPastIT
+
+%Utilization of being (progressive passive) (is being jumped)
+ProgPass -> Prog ProgBeGer VerbPast | PerfAll ProgBePast ProgBeGer VerbPast
 
 InfV -> Inf VPPresIT
 
 %Past Principle for intransitive and transitive (existential passive) (have/had/has)
-PastPrin -> PerfAll VPPastIT | PerfAll VPPastT
-
+PastPrin -> PerfAll VPPastIT | PerfAll VPPastIT
 
 %====================Other===================
 
 %combines has had have
-PerfAll -> PerfHH | Perf
+PerfAll -> Perf | PastPerf | PerfHas
+
+%all present tense verbs
+VerbPres -> ITVerbPres | TVerbPres
+
+VerbPast -> ITVerbPast | TVerbPast | Adv VerbPast | VerbPast Adv

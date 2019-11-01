@@ -6,10 +6,11 @@
 NPrp -> 'Nadia' | 'Ross' | 'Marseilles' | 'Google'
 
 %Personal pronouns
-NPersp -> 'she' | 'they' | 'I' | 'he' | 'him' | 'it' | 'we' | 'us' | 'them' | 'you'
+NPerspSubj -> 'she' | 'they' | 'I' | 'he' |'it' | 'we' | 'us' | 'you'
+NPersPObj -> 'him' | 'her' | 'them' | 'it'
 
 %Singular nouns
-NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'help' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward' | 'boat'
+NSing -> 'cat' | 'boy' | 'fur' | 'rutabaga' | 'boot' | 'poodle' | 'cloth' | 'cheese' | 'man' | 'hovercraft' | 'menu' | 'shot' | 'win' | 'demand' | 'shooting' | 'shoot' | 'saw' | 'reward' | 'boat'
 
 NSingVow -> 'eggplant' | 'autoclave' | 'elephant' | 'autopoiesis'
 
@@ -17,19 +18,19 @@ NSingVow -> 'eggplant' | 'autoclave' | 'elephant' | 'autopoiesis'
 NPlural -> 'cats'
 
 %Mass nouns
-NMAss -> 'snow' | 'rain' | 'bread'
+NMass -> 'snow' | 'rain' | 'bread' | 'help' | 'cheese' | 'autopoiesis'
 
 %=======================Prepositions====================
 
 %Prepositions
-P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before'
+P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 'of' | 'from' | 'after' | 'before' | 'by'
 
 %=======================Verbs====================
 
 %========Intransitive Verbs=========
 
 %Intransitive past tense verbs
-ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won'
+ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won' | 'was'
 
 %Intransitive present tense verbs
 ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'eats' | 'aspire' | 'jump' | 'want' | 'demand' | 'help' | 'shoot' | 'believe' | 'win'
@@ -39,25 +40,14 @@ ITGer -> 'arriving' | 'leaving' | 'eating' | 'aspiring' | 'jumping' | 'wanting' 
 
 %========Monotransitive Verbs=========
 
-%Monotransitive past tense verbs 
-MTVerbPast -> 'demanded' | 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left'
+%Transitive past tense verbs 
+TVerbPast -> 'demanded' | 'helped' | 'fondled' | 'ate' | 'shot' | 'brought' | 'told' | 'believed' | 'won' | 'saw' | 'seen' | 'reminded' | 'rewarded' | 'found' | 'wanted' | 'left' | 'gave'
 
-%Monotransitive present tense verbs 
-MTVerbPres -> 'demand' | 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want' | 'leave'
+%Transitive present tense verbs 
+TVerbPres -> 'demand' | 'help' | 'fondle' | 'eat' | 'shoot' | 'bring' | 'tell' | 'believe' | 'win' | 'see' | 'remind' | 'reward' | 'find' | 'want' | 'leave' | 'give'
 
-%Monotransitive gerund verbs 
-MTGer -> 'demanding' | 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving'
-
-%========Ditransitive Verbs=========
-
-%Ditransitive past tense verbs 
-DiTVerbPast -> 'brought' | 'told' | 'reminded' | 'gave'
-
-%Ditransitive present tense verbs 
-DiTVerbPres -> 'bring' | 'tell' | 'remind' | 'give'
-
-%Gerund version of ditransitive verbs 
-DiTGer -> 'bringing' | 'telling' | 'reminding' | 'giving'
+%Transitive gerund verbs 
+TGer -> 'demanding' | 'helping' | 'fondling' | 'eating' | 'shooting' | 'bringing' | 'telling' | 'believing' | 'winning' | 'seeing' | 'reminding' | 'rewarding' | 'finding' | 'wanting' | 'leaving' | 'giving'
 
 
 %========Adverbs=========
@@ -82,9 +72,10 @@ PosProN -> 'your' | 'my' | 'her' | 'our' | 'their'
 %Modal verbs
 Modal -> 'can' | 'could' | 'may' | 'might' | 'must' | 'will' | 'should' | 'would'
 
-% Perfect Aux
-PerfHH -> 'has' | 'had'
+% Perfect Aux 
 Perf -> 'have'
+PastPerf -> 'had'
+PerfHas -> 'has'
 
 %Progressive Aux
 Prog -> 'is' | 'am' | 'are' | 'was' | 'were'
@@ -93,3 +84,7 @@ ProgBePast -> 'been'
 ProgBeGer -> 'being'
 
 Inf -> 'to'
+InfVerbPast -> 'wanted' | 'left' | 'told' | 'helped' | 'demanded' | 'aspired'
+
+RelProN -> 'that'
+RelPRoNVerbs -> 'believed' | 'demanded' | 'reminded' | 'told' | 'saw'
