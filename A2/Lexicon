@@ -30,7 +30,7 @@ P -> 'with' | 'above' | 'near' | 'like' | 'in' | 'for' | 'on' | 'onto' | 'to' | 
 %========Intransitive Verbs=========
 
 %Intransitive past tense verbs
-ITVerbPast -> 'arrived' | 'left' | 'ate' | 'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won' | 'was'
+ITVerbPast -> 'arrived' | 'left' | 'ate' | 'eaten' |'aspired' | 'jumped' | 'wanted' | 'demanded' | 'helped' | 'shot' | 'believed' | 'won' | 'was'
 
 %Intransitive present tense verbs
 ITVerbPres -> 'arrive' | 'leave' | 'eat' | 'eats' | 'aspire' | 'jump' | 'want' | 'demand' | 'help' | 'shoot' | 'believe' | 'win'
