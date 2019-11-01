@@ -1,0 +1,10 @@
+a) There are 8 different trees
+
+b)
+
+Replacing the NP grammar rule with NP → NP PP| Det N for the recursive-descent parser causes an infinite loop due to the NP → NP PP.
+This occurs at the beginning where NP → NP PP is chosen - which doesn’t lead to any of the lexicons being used. 
+Changing the order to NP → Det N | NP PP overcomes the problem for this sentence. 
+As a result, ‘the dog’ is categorized with NP →  Det N immediately. 
+We are fortunate with the results from this example sentence as Det N is chosen for both instances (the dog/a man), but for a sentence like ‘the dog saw in the park’, it will get stuck in an infinite loop for the ‘in the park’ PP. 
+Hence, this is not an adequate solution in general. 
